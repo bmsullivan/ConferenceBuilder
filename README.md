@@ -1,0 +1,2 @@
+# ConferenceBuilder
+### a Sails application

@@ -1,0 +1,9 @@
+//
+   Created by Brian on 4/5/2014.
+if res && res.locals && res.locals.flash && res.locals.flash.err
+  ul.alert.alert-danger
+    each obj in res.locals.flash.err
+      each error in obj
+        each message in error
+          li= message
+

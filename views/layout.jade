@@ -1,0 +1,41 @@
+doctype html
+html
+  head
+    title= title
+
+    // Viewport mobile tag for sensible mobile support
+    meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1")
+
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap-theme.min.css')
+    block styles
+
+  body
+    .navbar.navbar-inverse.navbar-static-top(role='navigation')
+      .container
+        .navbar-header
+          a.navbar-brand(href='/') Conference Builder
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/users')
+          ul.nav.navbar-nav.navbar-right
+            li User Name
+            li
+              a Log Out
+
+    block body
+
+    // A few key dependencies, linked in order
+
+    // Bring in the socket.io client
+    script(type="text/javascript", src="/js/socket.io.js")
+
+    // then beef it up with some convenience logic for talking to Sails.js'
+    script(type="text/javascript", src="/js/sails.io.js")
+
+    script(type="text/javascript", src="/bower_components/jquery/dist/jquery.min.js")
+    script(type="text/javascript", src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
+
+    // listen on socket.io for incoming messages
+    script(type="text/javascript", src="/js/app.js")
