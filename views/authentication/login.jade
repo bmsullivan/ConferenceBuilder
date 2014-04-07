@@ -16,4 +16,5 @@ block body
           input.form-control#password(type='password', name='password')
       .form-group
         .col-sm-offset-2.col-sm-3
+          input(type='hidden', name='_csrf', value=_csrf)
           button.btn.btn-default(type='submit') Log In

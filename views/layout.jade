@@ -18,8 +18,9 @@ html
           a.navbar-brand(href='/') Conference Builder
         .collapse.navbar-collapse
           ul.nav.navbar-nav
-            li
-              a(href='/users') Users
+            if(req.user && req.user.isAdmin)
+              li
+                a(href='/user') Users
           ul.nav.navbar-nav.navbar-right
             if req.isAuthenticated()
               li

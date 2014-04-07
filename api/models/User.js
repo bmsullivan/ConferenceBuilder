@@ -31,6 +31,10 @@ module.exports = {
 
     hashedPassword: {
       type: 'string'
+    },
+
+    isAdmin: {
+      type: 'boolean'
     }
   }
 

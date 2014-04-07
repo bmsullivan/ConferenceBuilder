@@ -1,0 +1,36 @@
+//
+   Created by brian on 4/7/14.
+
+extends ../layout
+
+block body
+  .container
+    h1 Update User
+    include ../shared/flash
+    form.form-horizontal(action='/user/update/' + res.locals.user.id, method='POST')
+      .form-group
+        label.col-sm-2.control-label(for='firstName') First Name
+        .col-sm-3
+          +textField('user', 'firstName')
+      .form-group
+        label.col-sm-2.control-label(for='lastName') Last Name
+        .col-sm-3
+          +textField('user', 'lastName')
+      .form-group
+        label.col-sm-2.control-label(for='email') Email
+        .col-sm-3
+          +textField('user', 'email')
+      if req.user.isAdmin
+        .form-group
+          .checkbox.col-sm-offset-2
+            label
+              if res.locals.user.isAdmin
+                input(type='checkbox', name='isAdmin', checked='checked')
+                | Admin
+              else
+                input(type='checkbox', name='isAdmin')
+                | Admin
+      .form-group
+        .col-sm-offset-2.col-sm-3
+          input(type="hidden", name="_csrf", value=_csrf)
+          button.btn.btn-default(type='submit') Update
