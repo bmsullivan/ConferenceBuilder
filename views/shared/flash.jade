@@ -1,9 +1,7 @@
 //
    Created by Brian on 4/5/2014.
-if res && res.locals && res.locals.flash && res.locals.flash.err
+if res && res.locals && res.locals.flash && res.locals.flash.error
   ul.alert.alert-danger
-    each obj in res.locals.flash.err
-      each error in obj
-        each message in error
-          li= message
-
+    each field in Object.keys(res.locals.flash.error)
+      each error in res.locals.flash.error[field]
+        li= field + ": " +error.message

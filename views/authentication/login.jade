@@ -1,0 +1,19 @@
+//
+   Created by Brian on 4/6/2014.
+extends ../layout
+block body
+  .container
+    h1 Log In
+    include ../shared/flash
+    form.form-horizontal(action='/authentication/login', method='POST')
+      .form-group
+        label.col-sm-2.control-label(for='email') Email
+        .col-sm-3
+          +textField('user', 'email')
+      .form-group
+        label.col-sm-2.control-label(for='password') Password
+        .col-sm-3
+          input.form-control#password(type='password', name='password')
+      .form-group
+        .col-sm-offset-2.col-sm-3
+          button.btn.btn-default(type='submit') Log In

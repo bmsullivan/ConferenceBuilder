@@ -1,0 +1,2 @@
+mixin textField(objectName, fieldName)
+  input.form-control(type='text', name=fieldName, id=fieldName, value=(res.locals && res.locals[objectName]) ? res.locals[objectName][fieldName] : '')

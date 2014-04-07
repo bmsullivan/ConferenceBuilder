@@ -17,11 +17,11 @@
 
 module.exports = {
     
-  new: function(req, res) {
-    res.view();
-  },
-
   create: function(req, res, next) {
+    if(req.method === 'GET'){
+      return res.view();
+    }
+
     var hasher = require('password-hash');
     var validator = require('../services/sailsValidator');
 
@@ -32,16 +32,31 @@ module.exports = {
       hashedPassword: hasher.generate(req.param('password'))
     };
 
+    if(req.param('password') !== req.param('confirmPassword')) {
+      res.locals.flash = {
+        error: {
+          password: [
+            {message: 'Password and Confirm Password do not match'}
+          ]
+        }
+      };
+      res.locals.user = userObj;
+
+      return res.view();
+    }
+
     User.create(userObj).done(function (err, user){
 
       if(err){
         if (err.ValidationError) {
 
-          req.session.flash = {
-            err: validator(User, err.ValidationError)
+          res.locals.flash = {
+              error: err.ValidationError
           };
+          res.locals.user = userObj;
 
-          return res.redirect('/user/new');
+
+          return res.view();
         }
       }
 

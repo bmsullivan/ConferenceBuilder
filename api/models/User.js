@@ -32,12 +32,6 @@ module.exports = {
     hashedPassword: {
       type: 'string'
     }
-  },
-
-  validation_messages: {
-    firstName: {
-      required: 'Please enter a First Name'
-    }
   }
 
 };

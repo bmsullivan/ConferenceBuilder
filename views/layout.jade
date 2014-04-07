@@ -1,3 +1,4 @@
+include mixins/textField
 doctype html
 html
   head
@@ -18,11 +19,16 @@ html
         .collapse.navbar-collapse
           ul.nav.navbar-nav
             li
-              a(href='/users')
+              a(href='/users') Users
           ul.nav.navbar-nav.navbar-right
-            li User Name
-            li
-              a Log Out
+            if req.isAuthenticated()
+              li
+                a(href='/user/' + req.user.id)= 'Hello, ' + req.user.firstName
+              li
+                a(href='/authentication/logout') Log Out
+            else
+              li
+                a(href='/authentication/login') Log In
 
     block body
 
