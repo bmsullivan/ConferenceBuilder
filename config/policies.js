@@ -16,10 +16,11 @@ module.exports.policies = {
 
   // Default policy for all controllers and actions
   // (`true` allows public access) 
-  '*': true,
+  '*': 'global',
 
   UserController: {
-    index: 'isAdmin',
+    index: 'isAuthenticated',
+    find: 'isAuthenticated',
     update: 'isAuthenticated'
   }
 

@@ -1,0 +1,22 @@
+//
+   Created by brian on 4/8/14.
+extends ../layout
+block body
+  .container
+    h1 Update Conference
+    include ../shared/flash
+    form.form-horizontal(action='/conference/update', method='POST')
+      .form-group
+        label.col-sm-2.control-label(for='name') Name
+        .col-sm-3
+          +textField('conference', 'name')
+      .form-group
+        label.col-sm-2.control-label(for='tagline') Tagline
+        .col-sm-3
+          +textField('text','tagline')
+      .form-group
+        .col-sm-offset-2.col-sm-3
+          input(type="hidden", name="_csrf", value=_csrf)
+          input(type='hidden', name='id', value=conference.id || 0)
+          button.btn.btn-default(type='submit') Update
+

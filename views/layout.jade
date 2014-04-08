@@ -15,7 +15,7 @@ html
     .navbar.navbar-inverse.navbar-static-top(role='navigation')
       .container
         .navbar-header
-          a.navbar-brand(href='/') Conference Builder
+          a.navbar-brand(href='/')= globalConference.name
         .collapse.navbar-collapse
           ul.nav.navbar-nav
             if(req.user && req.user.isAdmin)

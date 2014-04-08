@@ -12,13 +12,17 @@ block body
           th First Name
           th Last Name
           th Email
+          th Admin
           th
       tbody
-        each user in res.locals.users
+        each user in users
           tr
             td= user.id
             td= user.firstName
             td= user.lastName
             td= user.email
+            td
+              if user.isAdmin
+                span.glyphicon.glyphicon-ok
             td
               a.btn.btn-primary(href='/user/update/' + user.id) Edit

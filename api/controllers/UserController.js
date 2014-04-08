@@ -108,6 +108,20 @@ module.exports = {
     }
   },
 
+  find: function(req, res, next){
+
+    if(!req.user.isAdmin && req.param('id') !== req.user.id.toString()) {
+      return res.forbidden('You are not permitted to perform this action.');
+    }
+
+    User.findOneById(req.param('id'), function(err, user){
+      if(err) { return next(err); }
+
+      res.locals.user = user;
+      return res.view();
+    });
+  },
+
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to UserController)
