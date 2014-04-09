@@ -13,10 +13,10 @@ block body
       .form-group
         label.col-sm-2.control-label(for='tagline') Tagline
         .col-sm-3
-          +textField('text','tagline')
+          +textField('conference','tagline')
       .form-group
         .col-sm-offset-2.col-sm-3
           input(type="hidden", name="_csrf", value=_csrf)
-          input(type='hidden', name='id', value=conference.id || 0)
+          input(type='hidden', name='id', value=conference ? conference.id : 0)
           button.btn.btn-default(type='submit') Update
 

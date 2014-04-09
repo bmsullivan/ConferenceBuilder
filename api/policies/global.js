@@ -8,8 +8,7 @@ module.exports = function(req, res, next){
       return next(err);
     }
 
-    res.locals.globalConference = conference && conference instanceof Array
-      ? conference[0] : { name: 'Name Placeholder', tagline: 'Tagline Placeholder' };
+    res.locals.globalConference = conference && conference instanceof Array && conference.length > 0 ? conference[0] : { name: 'Name Placeholder', tagline: 'Tagline Placeholder' };
     return next();
   });
 

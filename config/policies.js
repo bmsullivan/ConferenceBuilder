@@ -19,10 +19,12 @@ module.exports.policies = {
   '*': 'global',
 
   UserController: {
-    index: 'isAuthenticated',
-    find: 'isAuthenticated',
-    update: 'isAuthenticated'
-  }
+    index: ['isAuthenticated', 'global'],
+    find: ['isAuthenticated', 'global'],
+    update: ['isAuthenticated', 'global']
+  },
+
+  ConferenceController: ['isAdmin', 'global']
 
   /*
 	// Here's an example of adding some policies to a controller

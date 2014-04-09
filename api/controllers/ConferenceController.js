@@ -44,7 +44,7 @@ module.exports = {
             return next(err);
           }
           res.locals.conference = confs[0];
-          return res.view();
+          return res.redirect('/conference/update');
         });
       }
     }

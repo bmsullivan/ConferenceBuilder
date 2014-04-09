@@ -21,6 +21,8 @@ html
             if(req.user && req.user.isAdmin)
               li
                 a(href='/user') Users
+              li
+                a(href='/conference/update') Conference
           ul.nav.navbar-nav.navbar-right
             if req.isAuthenticated()
               li
