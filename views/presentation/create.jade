@@ -1,0 +1,19 @@
+extends ../layout
+
+block body
+  .container
+    h1 Submit a New Presentation
+    include ../shared/flash
+    form.form-horizontal(action='/presentation/create', method='POST')
+      .form-group
+        label.col-sm-2.control-label(for='title') Title
+        .col-sm-3
+          +textField('presentation', 'title')
+      .form-group
+        label.col-sm-2.control-label(for='abstract') Abstract
+        .col-sm-5
+          textarea.form-control#abstract(type='text', name='abstract', rows='4')
+      .form-group
+        .col-sm-offset-2.col-sm-3
+          button.btn.btn-default(type='submit') Submit Presentation
+
