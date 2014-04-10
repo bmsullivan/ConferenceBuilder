@@ -59,7 +59,13 @@ module.exports = {
         }
       }
 
-      res.redirect('/user');
+      req.logIn(user, function(err){
+        if(err){
+          return res.view();
+        }
+
+        return res.redirect('/');
+      });
     });
   },
 
