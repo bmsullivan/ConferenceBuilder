@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "PresentationController.js",
+  "sourceRoot": "",
+  "sources": [
+    "PresentationController.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;AAAA,EAAA,MAAM,CAAC,OAAP,GACE;AAAA,IAAA,MAAA,EAAQ,SAAC,GAAD,EAAM,GAAN,GAAA;aACN,GAAG,CAAC,IAAJ,CAAA,EADM;IAAA,CAAR;GADF,CAAA;AAAA"
+}
