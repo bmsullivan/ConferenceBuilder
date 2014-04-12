@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "isAdmin.js",
+  "sourceRoot": "",
+  "sources": [
+    "isAdmin.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,CAAA,CAAiB,CAAA,EAAX,CAAN,EAAkB;CAEhB,EAAM,CAAN,GAAA,QAAG;CACD,GAAO,SAAA;MADT;CAGA,EAAU,MAAH,EAAA,oCAAA;CALT,EAAiB;CAAjB"
+}

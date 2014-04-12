@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "Conference.js",
+  "sourceRoot": "",
+  "sources": [
+    "Conference.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,CAAA,CAEE,GAFI,CAAN;CAEE,CAEE,EAFF,MAAA;CAEE,CACE,EADF,EAAA;CACE,CAAM,EAAN,IAAA;CAAA,CACW,CADX,KACA,CAAA;QAFF;CAAA,CAKE,IADF,CAAA;CACE,CAAM,EAAN,IAAA;CAAA,CACW,CADX,KACA,CAAA;QANF;MAFF;CAFF,GAAA;CAAA"
+}

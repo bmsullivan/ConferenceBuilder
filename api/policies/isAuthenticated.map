@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "isAuthenticated.js",
+  "sourceRoot": "",
+  "sources": [
+    "isAuthenticated.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,CAAA,CAAiB,CAAA,EAAX,CAAN,EAAkB;CAEhB,EAAM,CAAN,WAAG;CACD,GAAO,SAAA;MADT;CAGA,EAAU,MAAH,EAAA,oCAAA;CALT,EAAiB;CAAjB"
+}

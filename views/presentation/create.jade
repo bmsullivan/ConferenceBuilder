@@ -10,10 +10,17 @@ block body
         .col-sm-3
           +textField('presentation', 'title')
       .form-group
+        label.col-sm-2.control-label(for='level') Level
+        .col-sm-3
+          select.form-control#level(name='level')
+            option Beginner
+            option Intermediate
+            option Advanced
+      .form-group
         label.col-sm-2.control-label(for='abstract') Abstract
         .col-sm-5
           textarea.form-control#abstract(type='text', name='abstract', rows='4')
       .form-group
         .col-sm-offset-2.col-sm-3
+          input(type="hidden", name="_csrf", value=_csrf)
           button.btn.btn-default(type='submit') Submit Presentation
-

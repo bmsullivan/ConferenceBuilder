@@ -1,0 +1,8 @@
+extends ../layout
+block body
+  .container
+    h1= presentation.title
+    h3= presentation.level
+    p= presentation.abstract
+    a.btn.btn-primary(href='/presentation/update/' + presentation.id) Edit
+

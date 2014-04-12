@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "flash.js",
+  "sourceRoot": "",
+  "sources": [
+    "flash.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,CAAA,CAAiB,CAAA,EAAX,CAAN,EAAkB;CAEhB,CAAA,CAAG,CAAH,CAAA,CAAU;AAEN,CAAJ,EAAO,CAAP,CAAA,EAAe;CACb,GAAO,SAAA;MAHT;CAAA,EAKG,CAAH,CAAA,CAAU,CAA4B;CALtC,CAAA,CAOG,CAAH,CAAA,EAAW;CAEX,GAAA,OAAA;CAXF,EAAiB;CAAjB"
+}
