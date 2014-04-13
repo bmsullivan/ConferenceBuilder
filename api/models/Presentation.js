@@ -4,16 +4,24 @@
     attributes: {
       title: {
         type: 'string',
-        maxLength: 200
+        maxLength: 200,
+        required: true
       },
       abstract: {
-        type: 'string'
+        type: 'string',
+        required: true
       },
       level: {
-        type: 'string'
+        type: 'string',
+        required: true
       },
-      userid: {
-        type: 'string'
+      trackId: {
+        type: 'string',
+        required: true
+      },
+      userId: {
+        type: 'string',
+        required: true
       }
     }
   };

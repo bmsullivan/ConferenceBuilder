@@ -24,7 +24,13 @@ module.exports.policies = {
     update: ['isAuthenticated', 'global']
   },
 
-  ConferenceController: ['isAdmin', 'global']
+  ConferenceController: ['isAdmin', 'global'],
+
+  PresentationController: {
+    create: ['isAuthenticated', 'global']
+  },
+
+  TrackController: ['isAdmin', 'global']
 
   /*
 	// Here's an example of adding some policies to a controller

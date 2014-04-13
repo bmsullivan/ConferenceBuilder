@@ -9,6 +9,8 @@ block body
           th Id
           th Title
           th Level
+          th Track
+          th User
           th
       tbody
         each pres in presentations
@@ -16,5 +18,7 @@ block body
             td= pres.id
             td= pres.title
             td= pres.level
+            td= pres.trackName
+            td= pres.userName
             td
               a.btn.btn-primary(href='/presentation/' + pres.id) Show

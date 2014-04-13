@@ -10,6 +10,10 @@ block body
         .col-sm-3
           +textField('presentation', 'title')
       .form-group
+        label.col-sm-2.control-label(for='Track') Track
+        .col-sm-3
+          +dropdown(res.locals.tracks, 'trackId', 'id', 'name')
+      .form-group
         label.col-sm-2.control-label(for='level') Level
         .col-sm-3
           select.form-control#level(name='level')

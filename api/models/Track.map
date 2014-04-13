@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "Track.js",
+  "sourceRoot": "",
+  "sources": [
+    "Track.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,CAAA,CACE,GADI,CAAN;CACE,CACE,EADF,MAAA;CACE,CACE,EADF,EAAA;CACE,CAAM,EAAN,IAAA;CAAA,CACW,MAAX,CAAA;QAFF;MADF;CADF,GAAA;CAAA"
+}

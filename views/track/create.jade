@@ -1,0 +1,16 @@
+extends ../layout
+
+block body
+  .container
+    h1 New Track
+    include ../shared/flash
+    form.form-horizontal(action='/track/create', method='POST')
+      .form-group
+        label.col-sm-2.control-label(for='name') Name
+        .col-sm-3
+          +textField('track', 'name')
+      .form-group
+        .col-sm-offset-2.col-sm-3
+          input(type="hidden", name="_csrf", value=_csrf)
+          button.btn.btn-default(type='submit') Create Track
+
