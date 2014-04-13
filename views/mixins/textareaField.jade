@@ -1,0 +1,2 @@
+mixin textareaField(objectName, fieldName, rows)
+  textarea.form-control(name=fieldName, id=fieldName, rows=rows)= (res.locals && res.locals[objectName]) ? res.locals[objectName][fieldName] : ''

@@ -2,9 +2,9 @@ extends ../layout
 
 block body
   .container
-    h1 Submit a New Presentation
+    h1 Edit Presentation
     include ../shared/flash
-    form.form-horizontal(action='/presentation/create', method='POST')
+    form.form-horizontal(action='/presentation/update/' + req.param('id'), method='POST')
       .form-group
         label.col-sm-2.control-label(for='title') Title
         .col-sm-3
@@ -12,16 +12,17 @@ block body
       .form-group
         label.col-sm-2.control-label(for='Track') Track
         .col-sm-3
-          +dropdown(res.locals.tracks, 'trackId', 'id', 'name')
+          +dropdown(res.locals.tracks, 'trackId', 'id', 'name', 'presentation')
       .form-group
         label.col-sm-2.control-label(for='level') Level
         .col-sm-3
-
+          +dropdown(res.locals.levels, 'level', 'name', 'name', 'presentation')
       .form-group
         label.col-sm-2.control-label(for='abstract') Abstract
         .col-sm-5
-          textarea.form-control#abstract(type='text', name='abstract', rows='4')
+          +textareaField('presentation', 'abstract', 4)
       .form-group
         .col-sm-offset-2.col-sm-3
           input(type="hidden", name="_csrf", value=_csrf)
-          button.btn.btn-default(type='submit') Submit Presentation
+          button.btn.btn-default(type='submit') Update Presentation
+

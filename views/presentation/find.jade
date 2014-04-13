@@ -4,5 +4,6 @@ block body
     h1= presentation.title
     h3= presentation.level
     p= presentation.abstract
-    a.btn.btn-primary(href='/presentation/update/' + presentation.id) Edit
+    if(req.user.id == presentation.userId || req.user.isAdmin)
+      a.btn.btn-primary(href='/presentation/update/' + presentation.id) Edit
 

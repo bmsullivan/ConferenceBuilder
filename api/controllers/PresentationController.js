@@ -34,7 +34,7 @@
             }
           }
           res.locals.presentation = presentation;
-          return res.view();
+          return res.redirect('/presentation');
         });
       }
     },
@@ -48,7 +48,12 @@
       });
     },
     index: function(req, res, next) {
-      return Presentation.find().done(function(err, presentations) {
+      var param;
+      param = {};
+      if (!req.user.isAdmin) {
+        param.userId = req.user.id;
+      }
+      return Presentation.find(param).done(function(err, presentations) {
         var pres, promises, _fn, _i, _len;
         if (err) {
           return next(err);
@@ -72,6 +77,64 @@
           return res.view();
         });
       });
+    },
+    update: function(req, res, next) {
+      var pres;
+      if (req.method === 'GET') {
+        return Presentation.findOneById(req.param('id')).done(function(err, pres) {
+          if (err) {
+            return next(err);
+          }
+          if (!req.user.isAdmin && req.user.id !== pres.userId) {
+            return res.forbidden('You are not permitted to perform this action');
+          }
+          res.locals.presentation = pres;
+          return Track.find().done(function(trackErr, tracks) {
+            if (trackErr) {
+              return next(trackErr);
+            }
+            res.locals.tracks = tracks;
+            res.locals.levels = [
+              {
+                name: 'Beginner'
+              }, {
+                name: 'Intermediate'
+              }, {
+                name: 'Advanced'
+              }
+            ];
+            return res.view();
+          });
+        });
+      } else {
+        pres = {
+          title: req.param('title'),
+          trackId: req.param('trackId'),
+          abstract: req.param('abstract'),
+          level: req.param('level')
+        };
+        return Presentation.findOneById(req.param('id')).done(function(err, existing) {
+          if (err) {
+            return next(err);
+          }
+          if (!req.user.isAdmin && req.user.id !== existing.userId) {
+            return res.forbidden('You are not permitted to perform this action');
+          } else {
+            return Presentation.update(req.param('id'), pres).done(function(err, presentations) {
+              if (err) {
+                if (err.ValidationError) {
+                  res.locals.flash = {
+                    error: err.ValidationError
+                  };
+                  res.locals.presentation = pres;
+                  return res.view();
+                }
+              }
+              return res.redirect('/presentation/' + presentations[0].id);
+            });
+          }
+        });
+      }
     }
   };
 

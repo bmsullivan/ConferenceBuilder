@@ -27,7 +27,9 @@ module.exports.policies = {
   ConferenceController: ['isAdmin', 'global'],
 
   PresentationController: {
-    create: ['isAuthenticated', 'global']
+    create: ['isAuthenticated', 'global'],
+    index: ['isAuthenticated', 'global'],
+    find: ['global']
   },
 
   TrackController: ['isAdmin', 'global']

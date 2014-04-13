@@ -1,5 +1,5 @@
-mixin dropdown(list, name, valueProp, displayProp)
+mixin dropdown(list, name, valueProp, displayProp, existingValueObj)
   select.form-control(name=name, id=name)
     each item in list
       option(value='') Select One
-      option(value=item[valueProp])= item[displayProp]
+      option(value=item[valueProp], selected=existingValueObj && res.locals[existingValueObj][name] == item[valueProp] ? 'selected': null)= item[displayProp]
