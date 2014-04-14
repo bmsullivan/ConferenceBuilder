@@ -3,6 +3,13 @@ q = require('q')
 module.exports =
   create: (req, res, next) ->
     if req.method == 'GET'
+      res.locals.levels = [
+        name: 'Beginner'
+      ,
+        name: 'Intermediate'
+      ,
+        name: 'Advanced'
+      ]
       Track.find().done (err, tracks) ->
         if err
           return next(err)
@@ -28,7 +35,7 @@ module.exports =
 
             return res.view()
 
-        res.locals.presentation = presentation
+        Presentation.publishCreate(presentation.toObject())
         return res.redirect('/presentation')
 
   find: (req, res, next) ->
@@ -53,10 +60,10 @@ module.exports =
       promises = []
       for pres in presentations
         do (pres) ->
-          promises.push Track.findOneById(pres.trackId)
+          promises.push(Track.findOneById(pres.trackId)
           .then((track) -> pres.trackName = track.name)
           .then(() -> User.findOneById(pres.userId))
-          .then((user) -> pres.userName = user.firstName + ' ' + user.lastName)
+          .then((user) -> pres.userName = user.firstName + ' ' + user.lastName))
 
       q.all(promises).then () -> return res.view()
 
@@ -105,3 +112,7 @@ module.exports =
                 return res.view()
 
             return res.redirect('/presentation/' + presentations[0].id)
+
+  subscribe: (req, res) ->
+    Presentation.subscribe(req.socket)
+    res.send(200)

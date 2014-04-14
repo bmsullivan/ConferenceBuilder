@@ -31,6 +31,8 @@
 
     });
 
+    socket.get('/presentation/subscribe');
+
 
     ///////////////////////////////////////////////////////////
     // Here's where you'll want to add any custom logic for

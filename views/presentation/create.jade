@@ -16,7 +16,7 @@ block body
       .form-group
         label.col-sm-2.control-label(for='level') Level
         .col-sm-3
-
+          +dropdown(res.locals.levels, 'level', 'name', 'name', 'presentation')
       .form-group
         label.col-sm-2.control-label(for='abstract') Abstract
         .col-sm-5
