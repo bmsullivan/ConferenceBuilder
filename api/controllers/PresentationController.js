@@ -33,6 +33,7 @@
           userId: req.user.id
         };
         return Presentation.create(pres).done(function(err, presentation) {
+          var pubPresentation;
           if (err) {
             if (err.ValidationError) {
               res.locals.flash = {
@@ -42,8 +43,16 @@
               return res.view();
             }
           }
-          Presentation.publishCreate(presentation.toObject());
-          return res.redirect('/presentation');
+          pubPresentation = presentation.toObject();
+          pubPresentation.userName = req.user.firstName + ' ' + req.user.lastName;
+          return Track.findOneById(presentation.trackId, function(err, track) {
+            if (err) {
+              return next(err);
+            }
+            pubPresentation.trackName = track.name;
+            Presentation.publishCreate(pubPresentation);
+            return res.redirect('/presentation');
+          });
         });
       }
     },
@@ -130,6 +139,7 @@
             return res.forbidden('You are not permitted to perform this action');
           } else {
             return Presentation.update(req.param('id'), pres).done(function(err, presentations) {
+              var pubPresentation;
               if (err) {
                 if (err.ValidationError) {
                   res.locals.flash = {
@@ -139,15 +149,35 @@
                   return res.view();
                 }
               }
-              return res.redirect('/presentation/' + presentations[0].id);
+              pubPresentation = presentations[0].toObject();
+              return User.findOneById(presentations[0].userId).done(function(err, user) {
+                if (err) {
+                  next(err);
+                }
+                pubPresentation.userName = user.firstName + ' ' + user.lastName;
+                return Track.findOneById(presentations[0].trackId).done(function(err, track) {
+                  if (err) {
+                    next(err);
+                  }
+                  pubPresentation.trackName = track.name;
+                  Presentation.publishUpdate(pubPresentation.id, pubPresentation);
+                  return res.redirect('/presentation/' + presentations[0].id);
+                });
+              });
             });
           }
         });
       }
     },
-    subscribe: function(req, res) {
+    subscribe: function(req, res, next) {
       Presentation.subscribe(req.socket);
-      return res.send(200);
+      return Presentation.find().done(function(err, presentations) {
+        if (err) {
+          next(err);
+        }
+        Presentation.subscribe(req.socket, presentations);
+        return res.send(200);
+      });
     }
   };
 

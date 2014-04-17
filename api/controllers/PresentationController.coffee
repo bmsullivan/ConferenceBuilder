@@ -35,8 +35,14 @@ module.exports =
 
             return res.view()
 
-        Presentation.publishCreate(presentation.toObject())
-        return res.redirect('/presentation')
+        pubPresentation = presentation.toObject()
+        pubPresentation.userName = req.user.firstName + ' ' + req.user.lastName
+        Track.findOneById presentation.trackId, (err, track) ->
+          if err
+            return next(err)
+          pubPresentation.trackName = track.name
+          Presentation.publishCreate(pubPresentation)
+          return res.redirect('/presentation')
 
   find: (req, res, next) ->
     Presentation.findOneById req.param('id'), (err, presentation) ->
@@ -75,6 +81,7 @@ module.exports =
         if !req.user.isAdmin && req.user.id != pres.userId
           return res.forbidden('You are not permitted to perform this action')
         res.locals.presentation = pres
+
         Track.find().done (trackErr, tracks) ->
           if trackErr
             return next(trackErr)
@@ -111,8 +118,25 @@ module.exports =
 
                 return res.view()
 
-            return res.redirect('/presentation/' + presentations[0].id)
+            pubPresentation = presentations[0].toObject()
+            User.findOneById(presentations[0].userId).done (err, user) ->
+              if err
+                next(err)
 
-  subscribe: (req, res) ->
+              pubPresentation.userName = user.firstName + ' ' + user.lastName
+              Track.findOneById(presentations[0].trackId).done (err, track) ->
+                if err
+                  next(err)
+
+                pubPresentation.trackName = track.name
+                Presentation.publishUpdate(pubPresentation.id, pubPresentation)
+
+                return res.redirect('/presentation/' + presentations[0].id)
+
+  subscribe: (req, res, next) ->
     Presentation.subscribe(req.socket)
-    res.send(200)
+    Presentation.find().done (err, presentations) ->
+      if err
+        next(err)
+      Presentation.subscribe(req.socket, presentations)
+      res.send(200)
